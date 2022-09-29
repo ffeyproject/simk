@@ -112,10 +112,8 @@
     </ul>
 </li>
 <li class="nav-header">MANAGE CONTENT</li>
-<li
-    class="nav-item {{ (request()->is('backend/admin/data-pendaftaran')) || (request()->is('users')) || (request()->is('roles')) || (request()->is('users/*')) || (request()->is('backend/data-siswa/*'))  || (request()->is('backend/data-siswa')) || (request()->is('backend/data-siswa/create')) || (request()->is('backend/data-siswa/{student}/edit')) ? 'active menu-open' : '' }}">
-    <a href="#"
-        class="nav-link {{ (request()->is('backend/admin/data-pendaftaran')) || (request()->is('users')) || (request()->is('roles')) || (request()->is('users/*')) || (request()->is('backend/data-siswa')) || (request()->is('backend/data-siswa/create')) || (request()->is('backend/data-siswa/{student}/edit'))  ? 'active' : '' }} ">
+<li class="nav-item ">
+    <a href="#" class="nav-link ">
         <i class="fas fa-tasks"></i>
         <p>MENU CONTENT
             <i class="right fas fa-angle-left"></i>
@@ -147,9 +145,9 @@
 <li class="nav-header">MANAGE SISWA</li>
 
 <li
-    class="nav-item {{ (request()->is('backend/profile/*')) || (request()->is('backend/data-siswa/mydata')) || (request()->is('backend/siswa-absen/absen')) || (request()->is('backend/data-siswa/*'))  || (request()->is('backend/data-siswa')) || (request()->is('backend/data-siswa/create')) || (request()->is('backend/data-siswa/{student}/edit')) ? 'active menu-open' : '' }}">
+    class="nav-item {{ (request()->is('backend/profile/*')) || (request()->is('backend/data-siswa/mydata')) || (request()->is('backend/siswa-absen/absen')) || (request()->is('backend/data-siswa/*/profile')) || (request()->is('backend/siswa-absen/*/absen')) || (request()->is('backend/data-siswa/{student}/edit')) ? 'active menu-open' : '' }}">
     <a href="#"
-        class="nav-link {{ (request()->is('admin/data-pendaftaran')) || (request()->is('users')) || (request()->is('backend/siswa-absen/absen')) || (request()->is('backend/data-siswa/*')) || (request()->is('backend/data-siswa')) || (request()->is('backend/data-siswa/create')) || (request()->is('backend/data-siswa/{student}/edit'))  ? 'active' : '' }} ">
+        class="nav-link {{ (request()->is('backend/siswa-absen/absen')) || (request()->is('backend/siswa-absen/*/absen')) || (request()->is('backend/data-siswa/*/profile')) || (request()->is('backend/data-siswa/{student}/edit'))  ? 'active' : '' }} ">
         <i class="fas fa-tasks"></i>
         <p>MENU SISWA
             <i class="right fas fa-angle-left"></i>
@@ -158,18 +156,9 @@
     <ul class="nav nav-treeview">
         <li class="nav-item">
             <a href="{{ route('mydata.index') }}"
-                class="nav-link {{ (request()->is('backend/data-siswa/mydata')) || (request()->is('backend/data-siswa/*')) || (request()->is('admin/data-pendaftaran/*'))  ? 'active menu-open' : '' }} ">
+                class="nav-link {{ (request()->is('backend/data-siswa/mydata')) || (request()->is('backend/siswa-absen/*/absen')) || (request()->is('backend/data-siswa/*/profile'))  ? 'active menu-open' : '' }} ">
                 <i class="fas fa-bars"></i>
                 <p>My Data</p>
-            </a>
-        </li>
-    </ul>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="{{ route('mydata.index') }}"
-                class="nav-link {{ (request()->is('')) || (request()->is('kepuasan/create')) || (request()->is('admin/data-pendaftaran/*'))  ? 'active menu-open' : '' }} ">
-                <i class="fas fa-bars"></i>
-                <p>Kejuaraan</p>
             </a>
         </li>
     </ul>

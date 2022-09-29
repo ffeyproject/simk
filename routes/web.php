@@ -103,6 +103,7 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     Route::get('/backend/data-siswa/show/{student}', [StudentController::class, 'show'] )->name('datasiswa.show');
     Route::get('/backend/data-siswa/{student}/edit', [StudentController::class, 'edit'] )->name('datasiswa.edit');
     Route::patch('/backend/data-siswa/{student}/update', [StudentController::class, 'update'] )->name('datasiswa.update');
+    Route::patch('/backend/data-siswa/{student}/profile', [StudentController::class, 'ufoto'] )->name('datasiswa.update.foto');
     Route::delete('/backend/data-siswa/delete/{student}', [StudentController::class, 'delete'] )->name('datasiswa.delete');
     
     Route::get('/backend/data-siswa/mydata', [StudentController::class, 'mydata'])->name('mydata.index');

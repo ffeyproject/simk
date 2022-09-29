@@ -131,6 +131,8 @@ class StudentController extends Controller
     {
         $student = Student::where('user_id', '=', Auth::user()->id )->findOrFail($id);
         $user = User::where('is_admin', '=', 'false')->get();
+
+         $absen = Absen::where('user_id', '=', Auth::user()->id )->orderBy('id', 'desc')->get();
         
          $history = new HistoryLevel();
         $history = HistoryLevel::with('student', 'level')->where('student_id', '=', $id )->orderBy('id', 'desc')->get();
@@ -138,7 +140,8 @@ class StudentController extends Controller
         return view('backend.siswa.profile', [
                 'student' => $student,
                 'user' => $user,
-                'history' => $history
+                'history' => $history,
+                'absen' => $absen
         ]);
     }
 
@@ -179,8 +182,12 @@ class StudentController extends Controller
         $student->update();
 
         $foto = User::findOrFail($request->user_id);
-        if (empty($request->file('avatar'))){
-                $foto->avatar = $foto->avatar;
+            
+           if (!empty($image = $request->file('avatar'))) {
+                $destinationPath = 'foto/user/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $foto['avatar'] = "$profileImage";
             }
         else{
                 unlink('foto/user/'.$foto->avatar); //menghapus file lama
@@ -190,12 +197,49 @@ class StudentController extends Controller
                 $avatar->move('foto/user',$newName);
                 $foto->avatar = $newName;
             }
+    //  if ($image = $request->file('avatar')) {
+    //         $destinationPath = 'foto/user/';
+    //         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+    //         $image->move($destinationPath, $profileImage);
+    //         $foto['avatar'] = "$profileImage";
+    //     }else{
+    //         unset($foto['avatar']);
+    //     }
         $foto->update();
 
         
         Alert::success('Congrats', 'Data Profile Berhasil Diupdate');
 
         return redirect()->route('datasiswa.index');
+    }
+
+
+    public function ufoto(Request $request, User $user)
+    {
+        
+    
+        $user = User::findOrFail(Auth::id());
+            
+           if (!empty($image = $request->file('avatar'))) {
+                $destinationPath = 'foto/user/';
+            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
+            $image->move($destinationPath, $profileImage);
+            $user['avatar'] = "$profileImage";
+            }
+        else{
+                unlink('foto/user/'.$user->avatar); //menghapus file lama
+                $avatar = $request->file('avatar');
+                $ext = $avatar->getClientOriginalExtension();
+                $newName = rand(100000,1001238912).".".$ext;
+                $avatar->move('foto/user',$newName);
+                $user->avatar = $newName;
+            }
+            // dd($user);
+        $user->update();
+
+        Alert::success('Congrats', 'Data Profile Berhasil Diubah');
+
+        return redirect()->back();
     }
 
     /**

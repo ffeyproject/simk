@@ -32,8 +32,6 @@
                     </div>
                     <!-- /.card-header -->
                     <!-- form start -->
-                    {{ $student->user->name }}
-                    {{ $student->id }}
                     <form method="post" action="{{route('siswa-absen.store')}}" id="form" enctype="multipart/form-data">
                         @csrf
                         <div class="form-group">

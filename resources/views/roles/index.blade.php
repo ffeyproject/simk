@@ -15,8 +15,8 @@
                 </ol>
             </div>
         </div>
-        <div class="row mb-2">
-            <div class="container">
+        <div class="mb-2 row">
+            <div class="col-sm-6">
                 <a href="{{ route('roles.create') }}" class="btn btn-warning btn-lg">Tambah Role </a>
             </div>
         </div>

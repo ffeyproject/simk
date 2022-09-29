@@ -65,8 +65,9 @@
                                             <td>{{ $no++ }}</td>
                                             <td>{{ $waktu->hari }}</td>
                                             <td>
-                                                <span class="badge bg-warning">{{ $waktu->mulai }} - {{ $waktu->berhenti
-                                                    }}</span>
+                                                <span class="badge bg-warning">{{ $waktu->mulai }} WIB - {{
+                                                    $waktu->berhenti
+                                                    }} WIB</span>
                                             </td>
                                             <td>{!! $waktu->keterangan !!}</td>
                                         </tr>
