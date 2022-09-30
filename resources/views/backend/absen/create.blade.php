@@ -64,8 +64,8 @@
                                 <label for="tgl_hadir">Tanggal Hadir</label>
                                 <input type="date" name="tgl_hadir"
                                     class="form-control @error('tgl_hadir') is-invalid @enderror" id="tgl_hadir"
-                                    value="{{ old('tgl_hadir') ?: '' }}" placeholder="Masukkan Berhenti Latihan"
-                                    min="00:00" max="23:59">
+                                    value="{{ date('Y-m-d') }}" placeholder="Masukkan Berhenti Latihan" min="00:00"
+                                    max="23:59">
                                 @if ($errors->has('tgl_hadir'))
                                 <div class="invalid-feedback">{{
                                     $errors->first('tgl_hadir') }}</div>
