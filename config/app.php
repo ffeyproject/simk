@@ -185,6 +185,10 @@ return [
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+
+
+        Milon\Barcode\BarcodeServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
         
 
         /*
@@ -218,6 +222,10 @@ return [
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Carbon' => 'Carbon\Carbon',
         'Image' => Intervention\Image\Facades\Image::class,
+
+        'PDF' => Barryvdh\DomPDF\Facade::class,
+        'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+        'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
     ])->toArray(),
 
 ];

@@ -108,6 +108,7 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     
     Route::get('/backend/data-siswa/mydata', [StudentController::class, 'mydata'])->name('mydata.index');
     Route::get('/backend/data-siswa/{student}/profile', [StudentController::class, 'profile'])->name('profilesiswa.index');
+    Route::get('/backend/data-siswa/{student}/kartu', [StudentController::class, 'downloadKartu'])->name('download.kartu');
 
     Route::get('/backend/data-kejuaraan', [ChampionshipController::class, 'index'] )->name('data-kejuaraan.index');
     Route::get('/backend/data-kejuaraan/create', [ChampionshipController::class, 'create'] )->name('data-kejuaraan.create');

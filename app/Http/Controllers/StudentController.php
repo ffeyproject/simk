@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Absen;
+use App\Models\Championship;
 use App\Models\HistoryLevel;
 use App\Models\Jadwal;
 use Carbon\Carbon;
@@ -24,7 +25,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $student = Student::all();
+        $student = Student::orderBy('id', 'desc')->get();
 
         return view ('backend.siswa.index', [
             'student' => $student
@@ -111,13 +112,16 @@ class StudentController extends Controller
         $history = new HistoryLevel();
         $history = HistoryLevel::with('student', 'level')->where('student_id', '=', 'student.id' )->get();
         
-         $jadwal = Jadwal::all();
+        $jadwal = Jadwal::all();
+
+        $kejuaraan = Championship::orderBy('id', 'desc')->get();;
 
         return view('backend.siswa.data', [
                 'student' => $student,
                 'jadwal' => $jadwal,
                 'absen' => $absen,
-                'history' => $history
+                'history' => $history,
+                'kejuaraan' => $kejuaraan
         ]);
     }
 
@@ -240,6 +244,14 @@ class StudentController extends Controller
         Alert::success('Congrats', 'Data Profile Berhasil Diubah');
 
         return redirect()->back();
+    }
+
+    public function downloadKartu($id){
+      $student = Student::where('user_id', '=', Auth::user()->id )->findOrFail($id);
+
+      $pdf = PDF::loadView('backend.siswa.kartu', compact('student'));
+      return $pdf->download('kartuAnggota.pdf');
+
     }
 
     /**

@@ -17,9 +17,12 @@
         <div class="mb-2 row">
             <div class="col-sm-6">
                 @foreach ($student as $menu )
-                <a href="{{ route('siswa-absen.create', $menu->id) }}" class="btn btn-warning btn-lg">Absen Disini</a>
-                <a href="{{ route('profilesiswa.index', $menu->id) }}" class="btn btn-primary btn-lg">Lihat Detail</a>
-                <a href="{{ route('profilesiswa.index', $menu->id) }}" class="btn btn-info btn-lg">Print Kartu</a>
+                <a href="{{ route('siswa-absen.create', $menu->id) }}" class="btn btn-warning btn-lg"><i
+                        class="fa fa-camera" aria-hidden="true"></i> Absen Disini</a>
+                <a href="{{ route('profilesiswa.index', $menu->id) }}" class="btn btn-primary btn-lg"><i
+                        class="fa fa-folder-open" aria-hidden="true"></i> Lihat Detail</a>
+                <a href="{{ route('download.kartu', $menu->id) }}" class="btn btn-info btn-lg"><i class="fa fa-id-card"
+                        aria-hidden="true"></i> Print Kartu</a>
                 @endforeach
             </div>
         </div>
@@ -73,6 +76,51 @@
                                         </tr>
                                         @endforeach
                                     </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="card card-warning">
+                        <div class="card-header">
+                            <h4 class="card-title w-100">
+                                <a class="d-block w-100" data-toggle="collapse" href="#kejuaraan">
+                                    Jadwal Pertandingan / Kejuaraan
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="kejuaraan" class="collapse" data-parent="#accordion">
+                            <div class="card-body">
+                                <table id="t_kejuaraan" class="table table-bordered table-striped" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th width="20px">No</th>
+                                            <th width="100px">Tanggal</th>
+                                            <th width="100px">Nama</th>
+                                            <th width="100px">Tingkatan</th>
+                                            <th width="100px">Tempat</th>
+                                            <th width="100px">Note</th>
+                                        </tr>
+                                    </thead>
+                                    <?php $no = 1 ?>
+                                    <tbody>
+                                        @forelse ($kejuaraan as $item)
+                                        <tr>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{$item->tgl_kejuaraan }}</td>
+                                            <td>{{ $item->nama_kejuaraan }}</td>
+                                            <td>{{ $item->tingkatan_kejuaraan }}</td>
+                                            <td>{{ $item->tempat_kejuaraan }}</td>
+                                            <td>{!! $item->keterangan !!}</td>
+                                            @empty
+                                        <tr>
+                                            <td colspan="12">Data tidak ada.</td>
+                                        </tr>
+                                        </tr>
+
+                                    </tbody>
+                                    @endforelse
                                 </table>
                             </div>
                         </div>
@@ -253,6 +301,18 @@
     $(function () {
         $("#t_sabuk").DataTable({
         }).buttons().container().appendTo('#t_sabuk_wrapper .col-md-2:eq(0)');
+    });
+
+</script>
+
+<script>
+    $(function () {
+        $("#t_kejuaraan").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": true,
+            "buttons": ["copy", "excel", "pdf", "print"]
+        }).buttons().container().appendTo('#t_kejuaraan_wrapper .col-md-6:eq(0)');
     });
 
 </script>

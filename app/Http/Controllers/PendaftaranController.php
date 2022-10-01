@@ -23,7 +23,7 @@ class PendaftaranController extends Controller
 
     public function data()
     {
-        $daftar = Pendaftaran::all();
+        $daftar = Pendaftaran::orderBy('id', 'desc')->get();;
         return view('backend.pendaftaran.index', compact('daftar'));
     }
 

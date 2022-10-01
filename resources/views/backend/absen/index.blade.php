@@ -108,6 +108,9 @@
 <script>
     $(function () {
         $("#t_absen").DataTable({
+            "responsive": true,
+            "lengthChange": true,
+            "autoWidth": true
         }).buttons().container().appendTo('#t_absen_wrapper .col-md-2:eq(0)');
     });
 
