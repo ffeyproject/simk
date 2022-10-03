@@ -189,20 +189,16 @@ class StudentController extends Controller
 
         $foto = User::findOrFail($request->user_id);
             
-           if (!empty($image = $request->file('avatar'))) {
-                $destinationPath = 'foto/user/';
-            $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
-            $image->move($destinationPath, $profileImage);
-            $foto['avatar'] = "$profileImage";
-            }
-        else{
-                unlink('foto/user/'.$foto->avatar); //menghapus file lama
-                $avatar = $request->file('avatar');
-                $ext = $avatar->getClientOriginalExtension();
+            if($request->hasFile('avatar')){
+            $request->validate([
+              'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('avatar');
+            $ext = $path->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;
-                $avatar->move('foto/user',$newName);
+                $path->move('foto/user',$newName);
                 $foto->avatar = $newName;
-            }
+        }
     //  if ($image = $request->file('avatar')) {
     //         $destinationPath = 'foto/user/';
     //         $profileImage = date('YmdHis') . "." . $image->getClientOriginalExtension();
