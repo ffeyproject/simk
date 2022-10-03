@@ -107,20 +107,31 @@ class UsersController extends Controller
     {
         // $user->update($request->validated());
 
-         $user->name = $request->name;
-        $user->email = $request->email;
-        // $user->status = $request->boolean('status');
-        if (!empty($request->file('avatar'))){
-                $user->avatar = $user->avatar;
-            }
-        else{
-                unlink(public_path('foto/user/'.$user->avatar)); //menghapus file lama
-                $avatar = $request->file('avatar');
-                $ext = $avatar->getClientOriginalExtension();
+        //  $user->name = $request->name;
+        // $user->email = $request->email;
+        // // $user->status = $request->boolean('status');
+        // if (!empty($request->file('avatar'))){
+        //         $user->avatar = $user->avatar;
+        //     }
+        // else{
+        //         unlink('foto/user/'.$user->avatar); //menghapus file lama
+        //         $avatar = $request->file('avatar');
+        //         $ext = $avatar->getClientOriginalExtension();
+        //         $newName = rand(100000,1001238912).".".$ext;
+        //         $avatar->move('foto/user',$newName);
+        //         $user->avatar = $newName;
+        //     }
+
+           if($request->hasFile('avatar')){
+            $request->validate([
+              'avatar' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+            ]);
+            $path = $request->file('avatar');
+            $ext = $path->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;
-                $avatar->move('foto/user',$newName);
+                $path->move('foto/user',$newName);
                 $user->avatar = $newName;
-            }
+        }
 
         // dd($user);
         $user->update();
