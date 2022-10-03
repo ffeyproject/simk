@@ -251,7 +251,7 @@ class StudentController extends Controller
     //   return $pdf->file('kartuAnggota.pdf');
 
       $pdf = PDF::loadview('backend.siswa.kartu', compact('student'))
-        ->setPaper('Legal', 'potrait')
+        ->setPaper('a5', 'potrait')
         ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true ,'chroot' => public_path()]);
         $pdf->getDomPDF()->setHttpContext(
         stream_context_create([
@@ -264,7 +264,7 @@ class StudentController extends Controller
         );
          set_time_limit(1200);
 
-        return $pdf->stream();
+        return $pdf->stream('Kartu Anggota'.'-'.$student->nisk.','.Auth::user()->name);
 
     }
 
