@@ -110,11 +110,11 @@ class UsersController extends Controller
          $user->name = $request->name;
         $user->email = $request->email;
         // $user->status = $request->boolean('status');
-        if (empty($request->file('avatar'))){
+        if (!empty($request->file('avatar'))){
                 $user->avatar = $user->avatar;
             }
         else{
-                unlink('foto/user/'.$user->avatar); //menghapus file lama
+                unlink(public_path('foto/user/'.$user->avatar)); //menghapus file lama
                 $avatar = $request->file('avatar');
                 $ext = $avatar->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;

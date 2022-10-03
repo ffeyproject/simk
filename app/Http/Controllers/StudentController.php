@@ -15,6 +15,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use PDF;
+
 
 class StudentController extends Controller
 {
@@ -231,7 +233,7 @@ class StudentController extends Controller
             $user['avatar'] = "$profileImage";
             }
         else{
-                unlink('foto/user/'.$user->avatar); //menghapus file lama
+                unlink(public_path('foto/user/'.$user->avatar)); //menghapus file lama
                 $avatar = $request->file('avatar');
                 $ext = $avatar->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;
@@ -249,8 +251,24 @@ class StudentController extends Controller
     public function downloadKartu($id){
       $student = Student::where('user_id', '=', Auth::user()->id )->findOrFail($id);
 
-      $pdf = PDF::loadView('backend.siswa.kartu', compact('student'));
-      return $pdf->download('kartuAnggota.pdf');
+    //   $pdf = PDF::loadView('backend.siswa.kartu', compact('student'));
+    //   return $pdf->file('kartuAnggota.pdf');
+
+      $pdf = PDF::loadview('backend.siswa.kartu', compact('student'))
+        ->setPaper('Legal', 'potrait')
+        ->setOptions(['isHtml5ParserEnabled' => true, 'isRemoteEnabled' => true ,'chroot' => public_path()]);
+        $pdf->getDomPDF()->setHttpContext(
+        stream_context_create([
+            'ssl' => [
+                'allow_self_signed'=> TRUE,
+                'verify_peer' => FALSE,
+                'verify_peer_name' => FALSE,
+                ]
+            ])
+        );
+         set_time_limit(1200);
+
+        return $pdf->stream();
 
     }
 
