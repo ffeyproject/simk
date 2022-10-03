@@ -17,12 +17,12 @@
         <div class="mb-2 row">
             <div class="col-sm-6">
                 @foreach ($student as $menu )
-                <a href="{{ route('siswa-absen.create', $menu->id) }}" class="btn btn-warning btn-lg"><i
+                <a href="{{ route('siswa-absen.create', $menu->id) }}" target="_blank" class="btn btn-warning btn-lg"><i
                         class="fa fa-camera" aria-hidden="true"></i> Absen Disini</a>
-                <a href="{{ route('profilesiswa.index', $menu->id) }}" class="btn btn-primary btn-lg"><i
+                <a href="{{ route('profilesiswa.index', $menu->id) }}" target="_blank" class="btn btn-primary btn-lg"><i
                         class="fa fa-folder-open" aria-hidden="true"></i> Lihat Detail</a>
-                <a href="{{ route('download.kartu', $menu->id) }}" class="btn btn-info btn-lg"><i class="fa fa-id-card"
-                        aria-hidden="true"></i> Print Kartu</a>
+                <a href="{{ route('download.kartu', $menu->id) }}" target="_blank" class="btn btn-info btn-lg"><i
+                        class="fa fa-id-card" aria-hidden="true"></i> Print Kartu</a>
                 @endforeach
             </div>
         </div>
