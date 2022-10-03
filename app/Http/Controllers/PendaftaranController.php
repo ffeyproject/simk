@@ -138,6 +138,9 @@ class PendaftaranController extends Controller
      */
     public function destroy(Pendaftaran $pendaftaran)
     {
-        //
+         $pendaftaran->delete();
+
+        Alert::warning('Deleted', 'Data Pendaftaran di Hapus');
+        return redirect()->route('datapendaftaran.index');
     }
 }
