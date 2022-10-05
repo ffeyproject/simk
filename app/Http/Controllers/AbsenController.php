@@ -65,37 +65,33 @@ class AbsenController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'student_id' => 'required',
+            'tgl_hadir' => 'required',
+            'jadwal_id' => 'required',
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1500'
+        ]);
+        
       $image = $request->file('foto');
-        $input['product_image'] = time() . '.' . $image->extension();
+        $input['foto'] = time() . '.' . $image->extension();
 
-        // Get path of thumbnails folder from /public
-        $thumbnailFilePath = public_path('foto/absen');
+        // Get path folder from /public
+        // $thumbnailFilePath = public_path('foto/absen');
 
-        $img = Image::make($image->path());
+        // $img = Image::make($image->path());
 
-        // Image resize to given aspect dimensions
-        // Save this thumbnail image to /public/thumbnails folder
-        $img->resize(450, 150, function ($const) {
-            $const->aspectRatio();
-        })->save($thumbnailFilePath . '/' . $input['product_image']);
+        // $img->resize(450, 150, function ($const) {
+        //     $const->aspectRatio();
+        // })->save($thumbnailFilePath . '/' . $input['product_image']);
 
-        // // Product images folder
-        // $ImageFilePath = public_path('foto/absen');
+        $destinationPath = public_path('foto/absen');
+        $imgFile = Image::make($image->getRealPath());
+        $imgFile->resize(450, 150, function ($constraint) {
+		    $constraint->aspectRatio();
+		})->save($destinationPath.'/'.$input['foto']);
+        $destinationPath = public_path('foto/absen');
+        $image->move($destinationPath, $input['foto']);
 
-        // // Store product original images
-        // $image->move($ImageFilePath, $input['product_image']);
-
-    // $image = $request->file('foto');
-    //     $imageName = time().'.'.$image->extension();
-       
-    //     $destinationPathThumbnail = public_path('/foto/absen');
-    //     $img = Image::make($image->path());
-    //     $img->resize(150, 150, function ($constraint) {
-    //         $constraint->aspectRatio();
-    //     })->save($destinationPathThumbnail.'/'.$imageName);
-     
-        // $destinationPath = public_path('/image');
-        // $image->move($destinationPath, $imageName);
 
         $absen = new Absen();
 
@@ -104,27 +100,12 @@ class AbsenController extends Controller
         $absen->tgl_hadir = $request->tgl_hadir;
         $absen->jadwal_id = $request->jadwal_id;
         $absen->keterangan = $request->keterangan;
-        $absen->foto = $input['product_image'];
+        $absen->foto = $input['foto'];
 
         $absen->save();
         Alert::success('Congrats', 'Data Berhasil Ditambahkan');
         return redirect()->route('mydata.index');
 
-        // dd('absen');
-
-
-        //   $absen = new Absen();
-        // $absen->student_id = '1';
-        // $absen->foto = $fileName;
-        // $absen->tgl_hadir = $request->tgl_hadir;
-        // $absen->jadwal_id = $request->jadwal_id;
-        // $absen->keterangan = $request->keterangan;
-        // $absen->save();
-        
-        // dd('Image uploaded successfully: '.$absen);
-
-        // Alert::success('Congrats', 'Data Berhasil Ditambahkan');
-        // return redirect()->back();
         
     }
 
