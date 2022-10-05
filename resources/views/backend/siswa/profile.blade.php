@@ -111,26 +111,205 @@
                     <div class="card-header">
                         <h3 class="card-title">About Me</h3>
                     </div>
-
                     <div class="card-body">
                         <strong><i class="fas fa-map-marker-alt mr-1"></i> Tempat Lahir</strong>
-                        <p class="text-muted">{{ $student->tempat_lahir }}</p>
+                        <p class="text-muted">{{ $student->tempat_lahir }}
+                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalTempat{{$student->id}}"><i class="fa fa-edit"></i>
+                            </a>
+                        </p>
+                        <form method="POST" role="form" action="{{ route('datasiswa.update.tempat', $student->id) }}"
+                            id="form" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal fade" id="modalTempat{{$student->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Tempat Lahir</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="tempat_lahir">Tempat Lahir</label>
+                                                <input type="text" name="tempat_lahir"
+                                                    class="form-control @error('tempat_lahir') is-invalid @enderror"
+                                                    id="tempat_lahir" autocomplete="off" placeholder=""
+                                                    value="{{ $student->tempat_lahir }}" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <hr>
                         <strong><i class="fas fa-book mr-1"></i> Tanggal Lahir</strong>
                         <p class="text-muted">
                             {{$student->tgl_lahir}}
+                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalTtl{{$student->id}}"><i class="fa fa-edit"></i>
+                            </a>
                         </p>
+                        <form method="POST" role="form" action="{{ route('datasiswa.update.gttl', $student->id) }}"
+                            id="form" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal fade" id="modalTtl{{$student->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Tanggal lahir</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="tgl_lahir">Tanggal Lahir</label>
+                                                <input type="date" name="tgl_lahir"
+                                                    class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                                    id="tgl_lahir" autocomplete="off" value="{{ $student->tgl_lahir }}"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <hr>
                         <strong><i class="fas fa-pencil-alt mr-1"></i> Tanggal Gabung</strong>
                         <p class="text-muted">
                             {{ $student->tahun_masuk }}
                         </p>
+                        <form method="POST" role="form" action="{{ route('datasiswa.update.gttl', $student->id) }}"
+                            id="form" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal fade" id="modalTtl{{$student->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Tanggal lahir</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="tgl_lahir">Tanggal Lahir</label>
+                                                <input type="date" name="tgl_lahir"
+                                                    class="form-control @error('tgl_lahir') is-invalid @enderror"
+                                                    id="tgl_lahir" autocomplete="off" value="{{ $student->tgl_lahir }}"
+                                                    required>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                         <hr>
                         <strong><i class="far fa-file-alt mr-1"></i> Notes</strong>
-                        <p class="text-muted">No HP : {{ $student->no_hp }}</p>
-                        <p class="text-muted">Nama Orang tua : {{ $student->nama_ortu }}</p>
-                    </div>
+                        <p class="text-muted">No HP : {{ $student->no_hp }}
+                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalNohp{{$student->id}}"><i class="fa fa-edit"></i>
+                            </a>
+                        </p>
+                        <form method="POST" role="form" action="{{ route('datasiswa.update.nohp', $student->id) }}"
+                            id="form" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
 
+                            <div class="modal fade" id="modalNohp{{$student->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit No Hp</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="no_hp">No Hp</label>
+                                                <input type="text" name="no_hp"
+                                                    class="form-control @error('no_hp') is-invalid @enderror" id="no_hp"
+                                                    autocomplete="off" placeholder="" value="{{ $student->no_hp }}"
+                                                    autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <p class="text-muted">Nama Orang tua : {{ $student->nama_ortu }}
+                            <a type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                data-target="#modalNamaortu{{$student->id}}"><i class="fa fa-edit"></i>
+                            </a>
+                        </p>
+                        <form method="POST" role="form" action="{{ route('datasiswa.update.namaortu', $student->id) }}"
+                            id="form" enctype="multipart/form-data">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="modal fade" id="modalNamaortu{{$student->id}}" tabindex="-1" role="dialog"
+                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Edit Nama Orang Tua</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="nama_ortu">Nama Orang Tua</label>
+                                                <input type="text" name="nama_ortu"
+                                                    class="form-control @error('nama_ortu') is-invalid @enderror"
+                                                    id="nama_ortu" autocomplete="off" placeholder=""
+                                                    value="{{ $student->nama_ortu }}" autocomplete="off">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-warning">Update</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
             </div>

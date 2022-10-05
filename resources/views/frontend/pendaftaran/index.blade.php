@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="modal-body">
                                     <p>Setelah melakukan Pendaftaran diwajibkan memberi bukti / chat ke Wa :
-                                        082123456789</p>
+                                        089509009798</p>
                                     <p>1. Setelah melakukan pengiriman bukti admin akan memproses data pendaftar.</p>
                                     <p>2. Jika admin sudah melakukan verifikasi, maka admin akan mengirimkan akun login
                                         ke sistem. </p>

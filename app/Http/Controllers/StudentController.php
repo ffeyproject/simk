@@ -264,6 +264,65 @@ class StudentController extends Controller
 
     }
 
+
+    public function gtempat(Request $request, Student $student)
+    {
+         $request->validate([
+            'tempat_lahir' => 'required'
+        ]);
+        
+        $student->tempat_lahir = $request->tempat_lahir;
+        $student->update();
+
+        Alert::success('Congrats', 'Data Tempat Lahir Berhasil Diupdate');
+
+        return redirect()->back();
+    }
+    
+    public function gttl(Request $request, Student $student)
+    {
+         $request->validate([
+            'tgl_lahir' => 'required'
+        ]);
+        
+        $student->tgl_lahir = $request->tgl_lahir;
+        $student->update();
+
+        Alert::success('Congrats', 'Data Tanggal Lahir Berhasil Diupdate');
+
+        return redirect()->back();
+    }
+    
+    public function gnohp(Request $request, Student $student)
+    {
+         $request->validate([
+            'no_hp' => 'required'
+        ]);
+        
+        $student->no_hp = $request->no_hp;
+        $student->update();
+
+        Alert::success('Congrats', 'Data no Hp Berhasil Diupdate');
+
+        return redirect()->back();
+    }
+    
+    public function gnamaortu(Request $request, Student $student)
+    {
+         $request->validate([
+            'nama_ortu' => 'required'
+        ]);
+        
+        $student->nama_ortu = $request->nama_ortu;
+        $student->update();
+
+        Alert::success('Congrats', 'Data Nama Orang Tua Berhasil Diupdate');
+
+        return redirect()->back();
+    }
+
+
+
     /**
      * Remove the specified resource from storage.
      *
