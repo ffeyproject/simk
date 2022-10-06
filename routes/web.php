@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\CategoriController;
 use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\HistoryLevelController;
 use App\Http\Controllers\HomeController;
@@ -143,6 +144,11 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     Route::get('/backend/data-jadwal/{jadwal}/edit', [JadwalController::class, 'edit'])->name('data-jadwal.edit');
     Route::patch('/backend/data-jadwal/{jadwal}/update', [JadwalController::class, 'update'])->name('data-jadwal.update');
     Route::delete('/backend/data-jadwal/{jadwal}/destroy', [JadwalController::class, 'destroy'])->name('data-jadwal.destroy');
+
+    Route::get('/backend/data-categori', [CategoriController::class, 'index'])->name('data-categori.index');
+    Route::post('/backend/data-categori/create', [CategoriController::class, 'store'])->name('data-categori.store');
+    Route::patch('/backend/data-categori/{categori}/update', [CategoriController::class, 'update'])->name('data-categori.update');
+    Route::delete('/backend/data-categori/{categori}/destroy', [CategoriController::class, 'destroy'])->name('data-categori.destroy');
 
     
     Route::get('/backend/siswa-absen/absen', [AbsenController::class, 'index'])->name('siswa-absen.index');

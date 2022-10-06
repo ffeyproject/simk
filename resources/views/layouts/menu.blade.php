@@ -113,8 +113,8 @@
     </ul>
 </li>
 <li class="nav-header">MANAGE CONTENT</li>
-<li class="nav-item ">
-    <a href="#" class="nav-link ">
+<li class="nav-item {{ (request()->is('backend/data-categori')) ? 'active menu-open' : '' }} ">
+    <a href="#" class="nav-link {{ (request()->is('backend/data-categori'))  ? 'active' : '' }}">
         <i class="fas fa-tasks"></i>
         <p>MENU CONTENT
             <i class="right fas fa-angle-left"></i>
@@ -125,6 +125,13 @@
             <a href="#" class="nav-link ">
                 <i class="fas fa-bars"></i>
                 <p>Menu Profile Dojo</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('data-categori.index') }}"
+                class="nav-link {{ (request()->is('backend/data-categori')) ? 'active' : '' }} ">
+                <i class="fas fa-bars"></i>
+                <p>Menu Categori</p>
             </a>
         </li>
         <li class="nav-item">

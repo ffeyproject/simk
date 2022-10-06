@@ -87,7 +87,23 @@ class HistoryLevelController extends Controller
      */
     public function update(Request $request, HistoryLevel $historyLevel)
     {
-        //
+         $request->validate([
+            'student_id' => 'required',
+            'level_id' => 'required',
+            'tgl_level' => 'required',
+            'keterangan' => 'required'
+        ]);
+
+        $historyLevel->student_id = $request->student_id;
+        $historyLevel->level_id = $request->level_id;
+        $historyLevel->tgl_level = $request->tgl_level;
+        $historyLevel->keterangan = $request->keterangan;
+        $historyLevel->save();
+
+        Alert::success('Congrats', 'Data Berhasil DiUpdate ');
+
+        return redirect()->back();
+
     }
 
     /**
@@ -98,6 +114,9 @@ class HistoryLevelController extends Controller
      */
     public function destroy(HistoryLevel $historyLevel)
     {
-        //
+         $historyLevel->delete();
+
+        Alert::warning('Deleted', 'Data Histori Sabuk Berhasil di Hapus');
+        return redirect()->back();
     }
 }
