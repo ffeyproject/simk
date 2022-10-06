@@ -51,10 +51,10 @@
 <li class="nav-header">MANAGE MENU</li>
 <li
     class="nav-item {{ (request()->is('backend/data-kejuaraan')) || (request()->is('backend/data-kejuaraan/create')) || (request()->is('backend/data-kejuaraan/*')) || (request()->is('backend/data-sabuk')) || (request()->is('backend/data-sabuk/*')) || (request()->is('backend/data-jadwal')) || (request()->is('backend/data-jadwal/*')) ||
-    (request()->is('backend/data-jadwal/create')) || (request()->is('backend/history-level'))  ? 'active menu-open' : '' }}">
+    (request()->is('backend/data-jadwal/create')) || (request()->is('backend/data-absen')) || (request()->is('backend/history-level'))  ? 'active menu-open' : '' }}">
     <a href="#"
         class="nav-link {{ (request()->is('backend/data-kejuaraan')) || (request()->is('backend/data-kejuaraan/create')) || (request()->is('backend/data-kejuaraan/*')) || (request()->is('backend/data-sabuk')) || (request()->is('backend/data-sabuk/*')) || (request()->is('backend/data-jadwal')) || (request()->is('backend/data-jadwal/*')) ||
-        (request()->is('backend/data-jadwal/create')) || (request()->is('backend/history-level'))  ? 'active' : '' }} ">
+        (request()->is('backend/data-jadwal/create')) || (request()->is('backend/data-absen')) || (request()->is('backend/history-level'))  ? 'active' : '' }} ">
         <i class="fas fa-tasks"></i>
         <p>MENU
             <i class="right fas fa-angle-left"></i>
@@ -62,7 +62,8 @@
     </a>
     <ul class="nav nav-treeview">
         <li class="nav-item">
-            <a href="#" class="nav-link  ">
+            <a href="{{ route('data-absen.index')}}"
+                class="nav-link {{ (request()->is('backend/data-absen')) ? 'active' : '' }}">
                 <i class="fas fa-bars"></i>
                 <p>Data Absensi Siswa</p>
             </a>

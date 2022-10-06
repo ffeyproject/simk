@@ -12,6 +12,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\StudentController;
+use App\Models\Absen;
 use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -129,6 +130,10 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     Route::get('/backend/data-sabuk/{level}/edit', [LevelController::class, 'edit'])->name('data-sabuk.edit');
     Route::patch('/backend/data-sabuk/{level}/update', [LevelController::class, 'update'])->name('data-sabuk.update');
     Route::delete('/backend/data-sabuk/{level}/destroy', [LevelController::class, 'destroy'])->name('data-sabuk.destroy');
+
+    Route::get('/backend/data-absen', [AbsenController::class, 'indexutama'])->name('data-absen.index');
+    Route::patch('/backend/data-absen/{absen}', [AbsenController::class, 'hadir'])->name('data-absen.hadir');
+    Route::patch('/backend/data-absen/non/{absen}', [AbsenController::class, 'non'])->name('data-absen.non');
 
 
     Route::get('/backend/data-jadwal', [JadwalController::class, 'index'])->name('data-jadwal.index');

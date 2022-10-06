@@ -30,6 +30,18 @@ class AbsenController extends Controller
         
          return view('backend.absen.index', compact('student','user','jadwal','absen'));
     }
+    
+    public function indexutama()
+    {
+        // $student = Student::where('user_id', '=', Auth::user()->id )->findOrFail($id);
+        // $user = User::where('is_admin', '=', 'false')->get();
+        // $jadwal = Jadwal::all();
+
+         $absen = Absen::with('student','jadwal')->where('status', '=' , 'HADIR')->orWhere('status', '=', 'TIDAK HADIR')->orderBy('id', 'desc')->get();
+         $pending = Absen::with('student','jadwal')->where('status', '=', 'PENDING')->orderBy('id', 'desc')->get();
+        
+         return view('backend.absen.index', compact('absen','pending'));
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -140,7 +152,27 @@ class AbsenController extends Controller
      */
     public function update(Request $request, Absen $absen)
     {
-        //
+         $absen->status = 'HADIR';
+         $absen->update();
+         Alert::success('Congrats', 'Data Berhasil Ditambahkan');
+         return redirect()->back();
+    }
+    
+    public function hadir(Absen $absen ,Request $request )
+    {
+         $absen->status = 'HADIR';
+        //  dd($absen);
+         $absen->update();
+         Alert::success('Congrats', 'Absen Telah Di setujui');
+          return redirect()->back();
+    }
+    
+    public function non(Request $request, Absen $absen)
+    {
+        $absen->status = 'TIDAK HADIR';
+        $absen->update();  
+         Alert::success('Congrats', 'Absen Telah Di Tolak');
+        return redirect()->back();
     }
 
     /**
@@ -149,8 +181,14 @@ class AbsenController extends Controller
      * @param  \App\Models\Absen  $absen
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Absen $absen)
+    public function destroy($id)
     {
-        //
+        $data = Absen::find($id);
+        $image_path = public_path().'/'.'foto/absen/'.$data->foto;
+        unlink($image_path);
+        $data->delete();
+
+        Alert::warning('Deleted', 'Absen Berhasil di Hapus');
+       return redirect()->back();
     }
 }
