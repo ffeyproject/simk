@@ -185,7 +185,7 @@ class AbsenController extends Controller
     {
         $data = Absen::find($id);
         $image_path = public_path().'/'.'foto/absen/'.$data->foto;
-        unlink($image_path);
+        public_path($image_path);
         $data->delete();
 
         Alert::warning('Deleted', 'Absen Berhasil di Hapus');
