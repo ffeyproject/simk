@@ -42,7 +42,7 @@ class UsersController extends Controller
      */
     public function store(User $user, StoreUserRequest $request) 
     {
-        $user = new User();
+            $user = new User();
             $user->name = $request->name;
             $user->email = $request->email;
             $user->password = $request->password;

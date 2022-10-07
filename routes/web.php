@@ -4,6 +4,7 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\CategoriController;
 use App\Http\Controllers\ChampionshipController;
+use App\Http\Controllers\GalleriController;
 use App\Http\Controllers\HistoryLevelController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JadwalController;
@@ -14,6 +15,7 @@ use App\Http\Controllers\RolesController;
 use App\Http\Controllers\PermissionsController;
 use App\Http\Controllers\StudentController;
 use App\Models\Absen;
+use App\Models\Galleri;
 use App\Models\Pendaftaran;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
@@ -149,6 +151,14 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     Route::post('/backend/data-categori/create', [CategoriController::class, 'store'])->name('data-categori.store');
     Route::patch('/backend/data-categori/{categori}/update', [CategoriController::class, 'update'])->name('data-categori.update');
     Route::delete('/backend/data-categori/{categori}/destroy', [CategoriController::class, 'destroy'])->name('data-categori.destroy');
+
+    Route::get('/backend/data-galeri', [GalleriController::class, 'index'])->name('data-galeri.index');
+    Route::get('/backend/data-galeri/create', [GalleriController::class, 'create'])->name('data-galeri.create');
+    Route::post('/backend/data-galeri/create', [GalleriController::class, 'store'])->name('data-galeri.store');
+    Route::get('/backend/data-galeri/{galleri}/show', [GalleriController::class, 'show'])->name('data-galeri.show');
+    Route::get('/backend/data-galeri/{galleri}/edit', [GalleriController::class, 'edit'])->name('data-galeri.edit');
+    Route::patch('/backend/data-galeri/{galleri}/update', [GalleriController::class, 'update'])->name('data-galeri.update');
+    Route::delete('/backend/data-galeri/{galleri}/destroy', [GalleriController::class, 'destroy'])->name('data-galeri.destroy');
 
     
     Route::get('/backend/siswa-absen/absen', [AbsenController::class, 'index'])->name('siswa-absen.index');

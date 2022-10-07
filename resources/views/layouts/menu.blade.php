@@ -135,7 +135,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="#" class="nav-link ">
+            <a href="{{ route('data-galeri.index') }}" class="nav-link ">
                 <i class="fas fa-bars"></i>
                 <p>Menu Gallery</p>
             </a>
