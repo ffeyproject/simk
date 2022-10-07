@@ -125,66 +125,6 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="card card-warning">
-                        <div class="card-header">
-                            <h4 class="card-title w-100">
-                                <a class="d-block w-100" data-toggle="collapse" href="#collapseTwo">
-                                    History Sabuk
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <table id="t_sabuk" class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Tanggal</th>
-                                            <th>Nama Siswa</th>
-                                            <th>Nama Sabuk</th>
-                                        </tr>
-                                    </thead>
-                                    <?php $no = 1 ?>
-                                    <tbody>
-                                        @forelse ($history as $item)
-                                        <tr>
-                                            <td>{{ $no++ }}</td>
-                                            <td>{{ $item->tgl_level }}</td>
-                                            <td>{{ $item->student->user->name }}</td>
-                                            <td>{{ $item->level->nama_sabuk }}</td>
-                                            @empty
-                                        <tr>
-                                            <td colspan="12">Data tidak ada.</td>
-                                        </tr>
-                                        </tr>
-                                    </tbody>
-                                    @endforelse
-                                </table>
-                            </div>
-                        </div> --}}
-                        {{--
-                    </div> --}}
-                    {{-- <div class="card card-primary">
-                        <div class="card-header">
-                            <h4 class="card-title w-100">
-                                <a class="d-block w-100" data-toggle="collapse" href="#collapseTri">
-                                    History Absensi
-                                </a>
-                            </h4>
-                        </div>
-                        <div id="collapseTri" class="collapse" data-parent="#accordion">
-                            <div class="card-body">
-                                <div class="mb-2 row">
-                                    <div class="col-sm-6">
-                                        @foreach ($student as $menu )
-                                        <a href="{{ route('siswa-absen.history', $menu->id) }}"
-                                            class="btn btn-primary btn-lg">Lihat Absensi</a>
-                                        @endforeach
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
                 </div>
             </div>
 
@@ -202,18 +142,22 @@
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <ol class="carousel-indicators">
                         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                     </ol>
                     <div class="carousel-inner">
-                        <div class="carousel-item active">
+                        @foreach ($galleri as $image )
+                        <div class="carousel-item {{$loop->iteration == 1 ? 'active' : ''}}">
+                            <img class="d-block w-100" src="{{ url('image/galeri/'.$image->image) }}"
+                                style="width: 100px; height: 350px;" alt="First slide">
+                        </div>
+                        @endforeach
+                        {{-- <div class="carousel-item active">
                             <img class="d-block w-100" src="{{ url('image/galeri/logo.jpeg') }}"
                                 style="width: 100px; height: 350px;" alt="First slide">
                         </div>
                         <div class="carousel-item">
                             <img class="d-block w-100" src="{{ url('image/galeri/bersama.jpeg') }}"
                                 style="width: 100px; height: 350px;" alt="Second slide">
-                        </div>
+                        </div> --}}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-custom-icon" aria-hidden="true">

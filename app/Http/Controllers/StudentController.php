@@ -9,6 +9,7 @@ use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Absen;
 use App\Models\Championship;
+use App\Models\Galleri;
 use App\Models\HistoryLevel;
 use App\Models\Jadwal;
 use Carbon\Carbon;
@@ -116,13 +117,23 @@ class StudentController extends Controller
         
         $jadwal = Jadwal::all();
 
-        $kejuaraan = Championship::orderBy('id', 'desc')->get();;
+        $kejuaraan = Championship::orderBy('id', 'desc')->get();
 
+        $galleri = Galleri::with('categori')->where('categorie_id', '=', '1')->where('status', '=', true)->orderBy('id', 'desc')->take(10)->get();
+
+        // $galleri = DB::table('categories')
+        // ->join('galleries', function ($join) {
+        //     $join->on('categories.id', '=', 'galleries.categorie_id')
+        //          ->where('categories.nama_categori', '=', 'Menu Data Siswa');
+        // })
+        // ->get();
+        
         return view('backend.siswa.data', [
                 'student' => $student,
                 'jadwal' => $jadwal,
                 'absen' => $absen,
                 'history' => $history,
+                'galleri' => $galleri,
                 'kejuaraan' => $kejuaraan
         ]);
     }

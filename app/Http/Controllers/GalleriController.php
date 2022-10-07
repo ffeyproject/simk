@@ -112,7 +112,7 @@ class GalleriController extends Controller
          $request->validate([
             'categorie_id' => 'required',
             'nama_gambar' => 'required',
-            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:3500',
+            'image' => 'image|mimes:jpg,png,jpeg,gif,svg|max:3500',
             'status' => 'required',
             'keterangan' => 'required'
         ]);
