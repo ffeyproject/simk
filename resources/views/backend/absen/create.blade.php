@@ -44,7 +44,7 @@
                                 <div class="invalid-feedback">{{
                                     $errors->first('foto') }}</div>
                                 @endif
-                                <p class="help-block">Max.1.5MB</p>
+                                <p class="help-block">Max.20MB</p>
                             </div>
                             <div class="form-group">
                                 <label for="jadwal_id">Pilih Jadwal</label>

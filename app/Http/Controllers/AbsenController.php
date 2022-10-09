@@ -81,20 +81,12 @@ class AbsenController extends Controller
             'student_id' => 'required',
             'tgl_hadir' => 'required',
             'jadwal_id' => 'required',
-            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1500'
+            'foto' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20500'
         ]);
         
       $image = $request->file('foto');
         $input['foto'] = time() . '.' . $image->extension();
 
-        // Get path folder from /public
-        // $thumbnailFilePath = public_path('foto/absen');
-
-        // $img = Image::make($image->path());
-
-        // $img->resize(450, 150, function ($const) {
-        //     $const->aspectRatio();
-        // })->save($thumbnailFilePath . '/' . $input['product_image']);
 
         $destinationPath = public_path('foto/absen');
         $imgFile = Image::make($image->getRealPath());
