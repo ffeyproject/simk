@@ -123,7 +123,7 @@ class GalleriController extends Controller
                 $galleri->image = $galleri->image;
             }
         else{
-                public_path('image/galeri/'.$galleri->image); //menghapus file lama
+                unlink('image/galeri/'.$galleri->image); //menghapus file lama
                 $image = $request->file('image');
                 $ext = $image->getClientOriginalExtension();
                 $newName = rand(100000,1001238912).".".$ext;

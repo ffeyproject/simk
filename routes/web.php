@@ -7,6 +7,7 @@ use App\Http\Controllers\ChampionshipController;
 use App\Http\Controllers\GalleriController;
 use App\Http\Controllers\HistoryLevelController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InstructureController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\PendaftaranController;
@@ -125,6 +126,14 @@ Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name
     Route::get('/backend/data-kejuaraan/{kejuaraan}/edit', [ChampionshipController::class, 'edit'] )->name('data-kejuaraan.edit');
     Route::patch('/backend/data-kejuaraan/{kejuaraan}/update', [ChampionshipController::class, 'update'] )->name('data-kejuaraan.update');
     Route::delete('/backend/data-kejuaraan/{kejuaraan}/delete', [ChampionshipController::class, 'destroy'] )->name('data-kejuaraan.destroy');    
+
+    Route::get('/backend/data-pelatih', [InstructureController::class, 'index'] )->name('data-pelatih.index');
+    Route::get('/backend/data-pelatih/create', [InstructureController::class, 'create'] )->name('data-pelatih.create');
+    Route::post('/backend/data-pelatih/create', [InstructureController::class, 'store'] )->name('data-pelatih.store');
+    Route::get('/backend/data-pelatih/show/{pelatih}', [InstructureController::class, 'show'] )->name('data-pelatih.show');
+    Route::get('/backend/data-pelatih/{pelatih}/edit', [InstructureController::class, 'edit'] )->name('data-pelatih.edit');
+    Route::patch('/backend/data-pelatih/{pelatih}/update', [InstructureController::class, 'update'] )->name('data-pelatih.update');
+    Route::delete('/backend/data-pelatih/{pelatih}/delete', [InstructureController::class, 'destroy'] )->name('data-pelatih.destroy');
     
     Route::get('/backend/data-sabuk', [LevelController::class, 'index'])->name('data-sabuk.index');
     Route::get('/backend/data-sabuk/create', [LevelController::class, 'create'])->name('data-sabuk.create');

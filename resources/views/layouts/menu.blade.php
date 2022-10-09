@@ -46,6 +46,12 @@
                 <p>Data Siswa</p>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('data-pelatih.index') }}" class="nav-link ">
+                <i class="fas fa-bars"></i>
+                <p>Data Pelatih</p>
+            </a>
+        </li>
     </ul>
 </li>
 <li class="nav-header">MANAGE MENU</li>
@@ -113,8 +119,10 @@
     </ul>
 </li>
 <li class="nav-header">MANAGE CONTENT</li>
-<li class="nav-item {{ (request()->is('backend/data-categori')) ? 'active menu-open' : '' }} ">
-    <a href="#" class="nav-link {{ (request()->is('backend/data-categori'))  ? 'active' : '' }}">
+<li
+    class="nav-item {{ (request()->is('backend/data-categori')) || (request()->is('backend/data-galeri')) ? 'active menu-open' : '' }} ">
+    <a href="#"
+        class="nav-link {{ (request()->is('backend/data-categori')) || (request()->is('backend/data-galeri')) ? 'active' : '' }}">
         <i class="fas fa-tasks"></i>
         <p>MENU CONTENT
             <i class="right fas fa-angle-left"></i>
@@ -135,7 +143,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('data-galeri.index') }}" class="nav-link ">
+            <a href="{{ route('data-galeri.index') }}"
+                class="nav-link {{ (request()->is('backend/data-galeri')) ? 'active' : '' }} ">
                 <i class="fas fa-bars"></i>
                 <p>Menu Gallery</p>
             </a>
