@@ -16,11 +16,11 @@
 <!-- Main content -->
 <section class="content">
     <div class="container-fluid">
-        <video width="1200" height="500" controls>
-            <source src="{{ asset('coming/video.mp4')}}" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <!-- /.row -->
+        {{-- <iframe width="1200" height="500" src="https://www.youtube.com/watch?v=8JHPwlt4xQw">
+        </iframe> --}}
+
+        <iframe width="1200" height="500" src="https://www.youtube.com/embed/8JHPwlt4xQw?autoplay=1&mute=0"
+            title="YouTube video player" frameborder="0" allowfullscreen></iframe>
     </div>
     <!-- /.container-fluid -->
 </section>
