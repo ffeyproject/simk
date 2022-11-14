@@ -43,6 +43,8 @@ Auth::routes();
 Route::get('/pendaftaran-siswa', [PendaftaranController::class, 'index'])->name('pendaftaran');
 Route::post('/pendaftaran-siswa', [PendaftaranController::class, 'store'])->name('pendaftaran.store');
 
+Route::get('/lokasi-latihan', [PendaftaranController::class, 'lokasi'])->name('lokasi');
+
 // Route::get('/', 'HomeController@index')->name('home.index');
 //  Route::get('home', [HomeController::class, 'index'])->name('home');
 

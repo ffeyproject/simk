@@ -28,4 +28,10 @@ class HomeController extends Controller
          
         return view('home', compact('thn'));
     }
+
+
+    public function lokasi()
+    {
+      return view('frontend.lokasi');
+    }
 }

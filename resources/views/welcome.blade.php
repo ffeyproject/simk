@@ -46,10 +46,14 @@
                         {{-- <div class="col"><input class="form-control" id="email" type="email"
                                 placeholder="Enter email address..." aria-label="Enter email address..."
                                 data-sb-validations="required,email" /></div> --}}
+
                         <div class="col-auto"><a href="{{ route('pendaftaran') }}"
                                 class="btn btn-primary btn-lg">Pendaftaran</a>
                         </div>
                         <div class="col-auto"><a href="{{ route('login') }}" class="btn btn-primary btn-lg">Login</a>
+                        </div>
+                        <div class="col-auto"><a href="{{ route('lokasi') }}" class="btn btn-primary btn-lg">Lokasi
+                                Latihan</a>
                         </div>
                     </div>
                     <div class="invalid-feedback mt-2" data-sb-feedback="email:required">An email is required.</div>

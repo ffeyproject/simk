@@ -21,6 +21,11 @@ class PendaftaranController extends Controller
         return view('frontend.pendaftaran.index');
     }
 
+    public function lokasi()
+    {
+        return view('frontend.lokasi');
+    }
+
     public function data()
     {
         $daftar = Pendaftaran::orderBy('id', 'desc')->get();;
