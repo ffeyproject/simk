@@ -50,7 +50,7 @@ class JadwalController extends Controller
 
         Alert::success('Congrats', 'Data Berhasil Ditambahkan');
 
-        return redirect()->back();
+        return redirect()->route('data-jadwal.index');
     }
 
     /**
